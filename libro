@@ -1,0 +1,80 @@
+import java.time.LocalDate;
+class Libro{
+    private String titulo;
+    private String autor;
+    private String genero;
+    private int id; //Numero identificador único
+    //Revisar si lo dejamos con String o buscamos otro tipo de dato. 
+    private String estadoLectura; // "pendiente", "en lectura", "finalizado"(tentativos)
+    private int paginas;
+    private int paginasLeidas;
+    private LocalDate fechaAgregado;
+
+    //Constructors
+    public Libro(String titulo, String autor, String genero, int id, LocalDate fecha, int paginas) {
+        this.titulo = titulo;
+        this. autor = autor;
+        this.genero = genero;
+        this.id = id;
+        this.paginas = paginas;
+        this.paginasLeidas = 0;
+        this.fechaAgregado = fecha;
+        this.estadoLectura = "Recién agregado."; //ACTUALIZAR 
+    }
+
+
+    //Getters
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getEstadoLectura() {
+        return estadoLectura;
+    }
+
+    public LocalDate getFechaAgregado(){
+        return this.fechaAgregado;
+    } 
+
+    //Setters
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+    
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public void setEstadoLectura(String estadoLectura) {
+        this.estadoLectura = estadoLectura;
+    }
+
+    public void setFechaAgregado(LocalDate fechaAgregado) {this.fechaAgregado = fechaAgregado;}
+    
+    
+    public int getPaginasLeidas() {
+        return paginasLeidas;
+    }
+
+}
