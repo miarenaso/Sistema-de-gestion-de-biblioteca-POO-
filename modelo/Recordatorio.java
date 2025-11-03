@@ -1,0 +1,18 @@
+package modelo;
+public class Recordatorio {
+    private String frecuencia;
+    private String mensaje;
+
+    public Recordatorio(String frecuencia, String mensaje) {
+        this.frecuencia = frecuencia;
+        this.mensaje = mensaje;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public String getFrecuencia() {
+        return frecuencia;
+    }
+}
