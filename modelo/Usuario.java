@@ -6,7 +6,7 @@ public class Usuario {
     private String  nombre;
     private String correo;  
     private String contrasena;
-    private int id;
+    private int id;// Puede que tengamos que cambiarlo a long
     private ArrayList<Libro> libros;
     private ArrayList<Libro>historialLibros;
     private ArrayList<Libro>librosFavs;
@@ -15,14 +15,15 @@ public class Usuario {
     private String tema; // claro u oscuro
     private String tamanoletra;
 
+    //If we change id to long, change here too
     public Usuario(String nombre, String correo, String contrasena, int id) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
         this.id = id;
-        this.libros = new ArrayList<>();
-        this.historialLibros = new ArrayList<>();
-        this.librosFavs = new ArrayList<>();
+        this.libros = new ArrayList<Libro>();
+        this.historialLibros = new ArrayList<Libro>();
+        this.librosFavs = new ArrayList<Libro>();
         this.racha = new Racha(this.id);
          //Valores por defecto
         this.tema = "claro";
