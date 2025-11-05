@@ -1,4 +1,5 @@
 package modelo;
+
 public class Recordatorio {
     private String frecuencia;
     private String mensaje;

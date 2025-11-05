@@ -1,12 +1,10 @@
-package app;
-import modelo.*;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import modelo.*;
 public class App {
-    public static void main(String[] args) {
-   Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
    
 System.out.println("Ingrese el nombre del usuario: ");
 String name = sc.nextLine();
@@ -43,5 +41,6 @@ System.out.println(u);
            
         }
     sc.close();
-}
+
+    }
 }
