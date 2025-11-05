@@ -24,7 +24,7 @@ System.out.println(u);
         sc.nextLine();
         //Toca testearlo
         for (int i=0; i<n;i++){
-            System.out.println("Ingrese el nombre del libro "+ i);
+            System.out.println("Ingrese el nombre del libro "+ (i+1));
             String bname = sc.nextLine();
             System.out.println("Ingrese el autor del libro "+ bname);
             String bautor = sc.nextLine();
