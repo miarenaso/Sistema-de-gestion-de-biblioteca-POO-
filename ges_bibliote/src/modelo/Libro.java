@@ -1,8 +1,9 @@
 package modelo;
 
-
+import java.io.Serializable;
 import java.time.LocalDate;
-public class Libro{
+
+public class Libro implements Serializable {
     private String titulo;
     private String autor;
     private String genero;

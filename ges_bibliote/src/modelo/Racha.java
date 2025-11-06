@@ -1,9 +1,9 @@
 package modelo;
 
-
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Racha {
+public class Racha implements Serializable {
     private int id;
     private int diasConsecutivos;
     private LocalDate ultimaFechaLectura;
