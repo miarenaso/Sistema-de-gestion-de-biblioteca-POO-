@@ -4,17 +4,20 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Racha implements Serializable {
-    private int id;
+    // this is for the Serializable
+    private static final long serialVersionUID = 1L;
+    //Attributes
+    private long id;
     private int diasConsecutivos;
     private LocalDate ultimaFechaLectura;
     
-    public Racha(int id){
+    public Racha(long id){
         this.id = id;
         this.diasConsecutivos = 0;
         this.ultimaFechaLectura = null;
     }
 
-    public int getId(){
+    public long getId(){
         return id;
     }
 

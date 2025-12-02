@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Libro implements Serializable {
+    // this is for the Serializable
+    private static final long serialVersionUID = 1L;
+    //Attributes
     private String titulo;
     private String autor;
     private String genero;

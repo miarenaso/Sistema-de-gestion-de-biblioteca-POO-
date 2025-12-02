@@ -3,11 +3,14 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Usuario implements Serializable {
+public class Usuario implements Serializable { 
+    // this is for the Serializable
+    private static final long serialVersionUID = 1L;
+    //Atributos clase Usuario
     private String  nombre;
     private String correo;  
     private String contrasena;
-    private int id;// Puede que tengamos que cambiarlo a long
+    private long id;
     private ArrayList<Libro> libros;
     private ArrayList<Libro>historialLibros;
     private ArrayList<Libro>librosFavs;
@@ -17,7 +20,7 @@ public class Usuario implements Serializable {
     private String tamanoletra;
 
     //If we change id to long, change here too
-    public Usuario(String nombre, String correo, String contrasena, int id) {
+    public Usuario(String nombre, String correo, String contrasena, long id) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
@@ -69,7 +72,7 @@ public class Usuario implements Serializable {
         return contrasena;
     }   
 
-    public int getId() {
+    public long getId() {
         return id;
     }  
 
@@ -110,7 +113,7 @@ public class Usuario implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
