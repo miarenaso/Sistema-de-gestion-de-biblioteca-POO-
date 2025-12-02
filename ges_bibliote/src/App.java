@@ -11,7 +11,7 @@ public class App {
         List<Usuario> usuarios = GestorUsuarios.cargarUsuarios(datos);
         //Ojo, we are filling it when is no data, but it is not done the log in yet.
 
-        //Si no se tiene un usuario se crea uno nuevo
+        //Si no se tiene un usuario se crea uno nuevo   NUEVO
         if(usuarios.isEmpty()){
 
             System.out.println("Ingrese el nombre del usuario:");
@@ -27,7 +27,8 @@ public class App {
             usuarios.add(u);
 
             // toca crear la función de ponerle el id al user. Pasamo 1 para que funcione el prototipo.
-            //Nueva logica aplicada para agregar libros
+            
+            //Nueva logica aplicada para agregar libros   NUEVO
             while(true){
                 System.out.println("¿Desea agregar un libro? (s/n): ");
                 String opcion = sc.nextLine().trim().toLowerCase();
@@ -55,7 +56,7 @@ public class App {
         GestorUsuarios.guardarUsuarios(usuarios, datos);
     }
 
-    //Metodo para agregar libros
+    //Metodo para agregar libros   NUEVO
     public static Libro crearLibroDesdeConsola(Scanner sc){
 
         System.out.println("Ingrese el título del libro:");
