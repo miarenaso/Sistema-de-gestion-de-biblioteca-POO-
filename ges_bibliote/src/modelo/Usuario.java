@@ -125,4 +125,25 @@ public class Usuario implements Serializable {
         this.tamanoletra = tamanoletra;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Usuario ID: ").append(id).append("\n");
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Correo: ").append(correo).append("\n");
+        sb.append("Libros:\n");
+        for (Libro libro : libros) {
+            sb.append(libro.toString()).append("\n");
+        }
+        sb.append("Libros Favoritos:\n");
+        for (Libro libroFav : librosFavs) {
+            sb.append(libroFav.toString()).append("\n");
+        }
+        sb.append("Historial de Libros:\n");
+        for (Libro libroHist : historialLibros) {
+            sb.append(libroHist.toString()).append("\n");
+        }
+        sb.append("Racha de Lectura: ").append(racha.getDiasConsecutivos()).append(" días consecutivos\n");
+        return sb.toString();
+    }
 }
