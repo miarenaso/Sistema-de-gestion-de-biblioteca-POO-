@@ -10,47 +10,71 @@ public class App {
    
         List<Usuario> usuarios = GestorUsuarios.cargarUsuarios(datos);
         //Ojo, we are filling it when is no data, but it is not done the log in yet.
+
+        //Si no se tiene un usuario se crea uno nuevo
         if(usuarios.isEmpty()){
-            System.out.println("Ingrese el nombre del usuario: ");
+
+            System.out.println("Ingrese el nombre del usuario:");
             String name = sc.nextLine();
-            System.out.println("Ingrese su correo: ");
-            String corr = sc.nextLine();
-            System.out.println("Ingrese la contraseña que desee registrar: ");
-            String pasword = sc.nextLine();
+
+            System.out.println("Ingrese su correo:");
+            String correo = sc.nextLine();
+
+            System.out.println("Ingrese la contraseña que desea registrar:");
+            String password = sc.nextLine();
+
+            Usuario u = new Usuario(name, correo, password, 1);
+            usuarios.add(u);
 
             // toca crear la función de ponerle el id al user. Pasamo 1 para que funcione el prototipo.
+            //Nueva logica aplicada para agregar libros
+            while(true){
+                System.out.println("¿Desea agregar un libro? (s/n): ");
+                String opcion = sc.nextLine().trim().toLowerCase();
 
-            Usuario u = new Usuario(name, corr, pasword, 1);
-            usuarios.add(u);
-            System.out.println("¿Cuántos libros desea ingresar?: ");
-            int n = sc.nextInt();
-            sc.nextLine();
-            // Toca testearlo
-            for (int i = 0; i < n; i++) {
-                System.out.println("Ingrese el nombre del libro " + (i + 1));
-                String bname = sc.nextLine();
-                System.out.println("Ingrese el autor del libro " + bname);
-                String bautor = sc.nextLine();
-                System.out.println("Ingrese el género del libro " + bname);
-                String bgen = sc.nextLine();
-                System.out.println("Ingrese el id del libro " + bname);
-                int bid = sc.nextInt();
-                sc.nextLine();
-                System.out.println("Ingrese el número total de páginas del libro: " + bname);
-                int bp = sc.nextInt();
-                sc.nextLine();
-                Libro l = new Libro(bname, bautor, bgen, bid, LocalDate.now(), bp);
-                u.agregarLibro(l);
+                if(opcion.equals("s")){
+                    Libro nuevo = crearLibroDesdeConsola(sc);
+                    u.agregarLibro(nuevo);
+                    System.out.println("Libro agregado.\n");
+                } 
+                else if(opcion.equals("n")){
+                    break;
+                } 
+                else {
+                    System.out.println("Opción no válida, escriba 's' o 'n'.");
+                }
             }
+
         } else {
             System.out.println("Usuarios existentes:");
-            for (Usuario usuario : usuarios) {
+            for (Usuario usuario : usuarios)
                 System.out.println(usuario);
-            }
         }
-        
-        
-    sc.close();
+
+        sc.close();
         GestorUsuarios.guardarUsuarios(usuarios, datos);
+    }
+
+    //Metodo para agregar libros
+    public static Libro crearLibroDesdeConsola(Scanner sc){
+
+        System.out.println("Ingrese el título del libro:");
+        String titulo = sc.nextLine();
+
+        System.out.println("Ingrese el autor del libro:");
+        String autor = sc.nextLine();
+
+        System.out.println("Ingrese el género del libro:");
+        String genero = sc.nextLine();
+
+        System.out.println("Ingrese el ID del libro:");
+        int id = Integer.parseInt(sc.nextLine());
+
+        System.out.println("Ingrese el número total de páginas:");
+        int paginas = Integer.parseInt(sc.nextLine());
+
+        LocalDate fechaAgregado = LocalDate.now();
+
+        return new Libro(titulo, autor, genero, id, fechaAgregado, paginas);
     }
 }
