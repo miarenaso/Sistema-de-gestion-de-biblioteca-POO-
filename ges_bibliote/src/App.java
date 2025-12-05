@@ -1,16 +1,22 @@
+package modelo;
+
+import gui.Login.LoginFrame;  //Para abrir la ventana
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
-import modelo.*;
 public class App {
     public static void main(String[] args) throws Exception {
+        new LoginFrame();  //Para abrir la ventana 
+        return;
+
+
         final String datos = "data.dat";
         Scanner sc = new Scanner(System.in);
-   
         List<Usuario> usuarios = GestorUsuarios.cargarUsuarios(datos);
         //Ojo, we are filling it when is no data, but it is not done the log in yet.
-
+        
         //Si no se tiene un usuario se crea uno nuevo   NUEVO
         if(usuarios.isEmpty()){
 
