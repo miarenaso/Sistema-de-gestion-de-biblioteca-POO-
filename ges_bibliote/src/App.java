@@ -1,18 +1,29 @@
-package modelo;
 
+import gui.MostrarRacha;
 import gui.Login.LoginFrame;  //Para abrir la ventana
-
+import modelo.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        new LoginFrame();  //Para abrir la ventana 
-        return;
-
-
         final String datos = "data.dat";
+
+           // Crear un usuario de prueba
+    Usuario user = new Usuario("Prueba", "correo@ejemplo.com", "1234", 1);
+
+    // Crear un frame vacío como padre
+    java.awt.Frame frame = new java.awt.Frame();
+
+    // Mostrar la ventana
+    MostrarRacha dialog = new MostrarRacha(frame, true, user);
+    dialog.setVisible(true);
+        //new LoginFrame();  //Para abrir la ventana 
+        
+
+
+        /* 
         Scanner sc = new Scanner(System.in);
         List<Usuario> usuarios = GestorUsuarios.cargarUsuarios(datos);
         //Ojo, we are filling it when is no data, but it is not done the log in yet.
@@ -59,7 +70,7 @@ public class App {
         }
 
         sc.close();
-        GestorUsuarios.guardarUsuarios(usuarios, datos);
+        GestorUsuarios.guardarUsuarios(usuarios, datos);*/
     }
 
     //Metodo para agregar libros   NUEVO

@@ -1,5 +1,6 @@
-package modelo;
+package gui.Login;
 
+import modelo.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -127,5 +128,5 @@ public class LoginFrame extends JFrame {
         GestorUsuarios.guardarUsuarios(usuarios, "data.dat"); //GUARDAR EL ARCHIVO
 
         JOptionPane.showMessageDialog(this, "Usuario creado exitosamente.");
-    }
+}
 }

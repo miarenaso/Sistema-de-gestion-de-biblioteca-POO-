@@ -22,14 +22,14 @@ public class PanelLogros extends javax.swing.JPanel {
     //Toca ponerle los apodos creativos según el día de racha. El int que se pasa como parámetro es el día al que se desbloquea la racha.
     //Para mas info de este array remítase a la clase LogroCard
     LogroCard[] logros = new LogroCard[] {
-        new LogroCard("gui/img/logro1.png", "gui/img/logro0.png", 1, "Lector iniciado"),
-        new LogroCard("gui/img/logro2.png", "gui/img/logro0.png", 3, "Degustador de libros"),
-        new LogroCard("gui/img/logro3.png", "gui/img/logro0.png", 5, "Mini ratón de biblioteca"),
-        new LogroCard("gui/img/logro4.png", "gui/img/logro0.png", 7, "La cabra lectora"),
-        new LogroCard("gui/img/logro5.png", "gui/img/logro0.png", 10, "Comprometido empedernido"),
-        new LogroCard("gui/img/logro6.png", "gui/img/logro0.png", 14, "Nuevo talento lector"),
-        new LogroCard("gui/img/logro7.png", "gui/img/logro0.png", 21, "Esquibidi toillet"),
-        new LogroCard("gui/img/logro8.png", "gui/img/logro0.png", 30, "Ratón de biblioteca")
+        new LogroCard("../img/logro1.png", "../img/logro0.png", 1, "Lector iniciado"),
+        new LogroCard("../img/logro2.png", "../img/logro0.png", 3, "Degustador de libros"),
+        new LogroCard("../img/logro3.png", "../img/logro0.png", 5, "Mini ratón de biblioteca"),
+        new LogroCard("../img/logro4.png", "../img/logro0.png", 7, "La cabra lectora"),
+        new LogroCard("../img/logro5.jpeg", "../img/logro0.png", 10, "Comprometido empedernido"),
+        new LogroCard("../img/logro6.png", "../img/logro0.png", 14, "Nuevo talento lector"),
+        new LogroCard("../img/logro7.png", "../img/logro0.png", 21, "Esquibidi toillet"),
+        new LogroCard("../img/logro8.png", "../img/logro0.png", 30, "Ratón de biblioteca")
     };
 
     for (LogroCard logro : logros) {
