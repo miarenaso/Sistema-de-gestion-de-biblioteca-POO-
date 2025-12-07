@@ -1,28 +1,35 @@
 
-import gui.MostrarRacha;
-import gui.PerfilUsuarioFrame;
-import java.time.LocalDate;  //Para abrir la ventana
-import java.util.Scanner;
+import recompensa.MainFrame;
+import bibliotecaui.BibliotecaUI;
+import Login.LoginFrame;
 import modelo.*;
+
+import java.time.LocalDate;
+import java.util.Scanner;
+import java.util.List;
+
 
 public class App {
     public static void main(String[] args) throws Exception {
         final String datos = "data.dat";
 
            // Crear un usuario de prueba
-    Usuario user = new Usuario("Prueba", "correo@ejemplo.com", "1234", 1);
+    Usuario usuario = new Usuario("Prueba", "correo@ejemplo.com", "1234", 1);
+    usuario.setRacha(new Racha());
+    
+    usuario.getRacha().actualizarRacha(true, LocalDate.now());
+    GestorCosmeticos.desbloquearSegunRacha(usuario);
+
+    new MainFrame(usuario);
 
 
-    PerfilUsuarioFrame perfil = new PerfilUsuarioFrame(user);
-        perfil.setVisible(true);
+    new BibliotecaUI();
 
-
+    
     // Crear un frame vacío como padre
     java.awt.Frame frame = new java.awt.Frame();
 
-    // Mostrar la ventana
-    MostrarRacha dialog = new MostrarRacha(frame, true, user);
-    dialog.setVisible(true);
+
         //new LoginFrame();  //Para abrir la ventana 
         
 
@@ -101,9 +108,7 @@ public class App {
     }
     ///////////////////////////////////////////////////////////////////////////
     //public static void main(String[] args) {
-    
-    // MODO PRUEBAS RÁPIDAS - Descomenta lo que quieras probar
-    
+
     //Usuario user = new Usuario("Alex", "alex@test.com", "123", 1L);
     //user.getRacha().setDiasConsecutivos(35);
     //new gui.PerfilUsuarioFrame(user);  // Prueba del perfil épico

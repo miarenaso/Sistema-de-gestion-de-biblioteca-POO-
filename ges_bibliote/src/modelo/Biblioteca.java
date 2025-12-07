@@ -1,3 +1,4 @@
+package modelo;
 import java.util.*;
 
 public class Biblioteca {
@@ -32,6 +33,4 @@ public class Biblioteca {
             }
         }
 
-        return resultado;
-    }
-}
+        return resultado;}}

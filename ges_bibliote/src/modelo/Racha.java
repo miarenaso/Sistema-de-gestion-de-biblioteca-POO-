@@ -11,6 +11,13 @@ public class Racha implements Serializable {
     private int diasConsecutivos;
     private LocalDate ultimaFechaLectura;
     
+    //NUEVO
+    public Racha(){
+        this.id = 0;
+        this.diasConsecutivos = 10;
+        this.ultimaFechaLectura = null;
+    }
+
     public Racha(long id){
         this.id = id;
         this.diasConsecutivos = 0;

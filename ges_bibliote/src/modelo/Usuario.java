@@ -19,6 +19,13 @@ public class Usuario implements Serializable {
     private String tema; // claro u oscuro
     private String tamanoletra;
 
+    //NUEVO
+    private String titulo;
+
+    //NUEVO
+    private ArrayList<String> cosmeticos;
+    private String bannerEquipado;
+
     //If we change id to long, change here too
     public Usuario(String nombre, String correo, String contrasena, long id) {
         this.nombre = nombre;
@@ -32,6 +39,13 @@ public class Usuario implements Serializable {
          //Valores por defecto
         this.tema = "claro";
         this.tamanoletra = "mediano";
+
+        //NUEVO
+        this.cosmeticos = new ArrayList<>();
+        this.bannerEquipado = "Fondo Azul";
+
+        //NUEVO
+        this.titulo = "Nuevo lector";
     }
 
     //Métodos clase Usuario
@@ -125,6 +139,23 @@ public class Usuario implements Serializable {
         this.tamanoletra = tamanoletra;
     }
 
+    //NUEVO
+
+    public ArrayList<String> getCosmeticos() { return cosmeticos; }
+    public void desbloquearCosmetico(String c) { cosmeticos.add(c); }
+    public void setBannerEquipado(String c) { bannerEquipado = c; }
+    public String getBannerEquipado() { return bannerEquipado; }
+
+    //nuevo
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String t) { titulo = t; }
+
+    //NUEVO
+    public void setRacha(Racha racha) {
+        this.racha = racha;
+    }
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -145,5 +176,6 @@ public class Usuario implements Serializable {
         }
         sb.append("Racha de Lectura: ").append(racha.getDiasConsecutivos()).append(" días consecutivos\n");
         return sb.toString();
+
     }
 }

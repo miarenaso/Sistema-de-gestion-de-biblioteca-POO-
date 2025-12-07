@@ -1,4 +1,4 @@
-package gui.Login;
+package Login;
 
 import modelo.*;
 import javax.swing.*;

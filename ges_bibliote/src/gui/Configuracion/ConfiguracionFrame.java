@@ -1,9 +1,9 @@
-package gui.Configuracion;
+package Configuracion;
 
 import modelo.AppTheme;
 import modelo.Usuario;
 import modelo.GestorUsuarios;
-import gui.Login.LoginFrame;
+import Login.LoginFrame;
 
 import javax.swing.*;
 import java.awt.*;

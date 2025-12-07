@@ -9,7 +9,7 @@ public class Libro implements Serializable {
     //Attributes
     private String titulo;
     private String autor;
-    private String genero;
+    private String categoria;
     private int id; //Numero identificador único
     //Revisar si lo dejamos con String o buscamos otro tipo de dato. 
     private String estadoLectura; // "pendiente", "en lectura", "finalizado"(tentativos)
@@ -18,10 +18,10 @@ public class Libro implements Serializable {
     private LocalDate fechaAgregado;
 
     //Constructors
-    public Libro(String titulo, String autor, String genero, int id, LocalDate fecha, int paginas) {
+    public Libro(String titulo, String autor, String categoria, int id, LocalDate fecha, int paginas) {
         this.titulo = titulo;
         this. autor = autor;
-        this.genero = genero;
+        this.categoria = categoria;
         this.id = id;
         this.paginas = paginas;
         this.paginasLeidas = 0;
@@ -61,8 +61,8 @@ public class Libro implements Serializable {
         return autor;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getCategoria() {
+        return categoria;
     }
 
     public int getId() {
@@ -92,8 +92,8 @@ public class Libro implements Serializable {
         this.autor = autor;
     }
     
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
     
     public void setId(int id) {
@@ -123,7 +123,7 @@ public class Libro implements Serializable {
         StringBuilder sbout = new StringBuilder();
         sbout.append("Título: ").append(this.titulo).append(".\n");
         sbout.append("Autor: ").append(this.autor).append(".\n");
-        sbout.append("Género: ").append(this.genero).append(".\n");
+        sbout.append("Género: ").append(this.categoria).append(".\n");
         sbout.append("ID: ").append(this.id).append(".\n");
         sbout.append("Estado de lectura: ").append(this.estadoLectura).append(".\n");
         sbout.append("Páginas: ").append(this.paginas).append(".\n");

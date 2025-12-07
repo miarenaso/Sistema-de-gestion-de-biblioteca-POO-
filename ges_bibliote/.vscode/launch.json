@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run App",
+            "request": "launch",
+            "mainClass": "App",
+            "cwd": "${workspaceFolder}/ges_bibliote",
+            "classPaths": [
+                "${workspaceFolder}/ges_bibliote/bin"
+            ]
+        }
+    ]
+}

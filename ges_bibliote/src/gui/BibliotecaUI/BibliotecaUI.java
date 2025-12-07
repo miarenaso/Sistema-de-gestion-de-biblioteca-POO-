@@ -1,3 +1,7 @@
+package bibliotecaui;
+
+import modelo.*;
+import java.time.LocalDate;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -65,9 +69,10 @@ public class BibliotecaUI extends JFrame {
         String estado = JOptionPane.showInputDialog("Estado (Pendiente / En lectura / Finalizado):");
         if (estado == null) return;
 
-        Libro libro = new Libro(titulo, autor, categoria, estado);
+        Libro libro = new Libro(titulo, autor, categoria, 2, LocalDate.now(), 100);
         biblioteca.agregarLibro(libro);
 
+        
         actualizarLista();
     }
 
@@ -108,7 +113,7 @@ public class BibliotecaUI extends JFrame {
         String nuevo = JOptionPane.showInputDialog("Nuevo estado:");
         if (nuevo == null) return;
 
-        libro.setEstado(nuevo);
+        libro.setEstadoLectura(nuevo);
         actualizarLista();
     }
 
