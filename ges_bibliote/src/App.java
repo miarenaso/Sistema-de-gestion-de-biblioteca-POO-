@@ -1,12 +1,9 @@
 
-import recompensa.MainFrame;
 import bibliotecaui.BibliotecaUI;
-import Login.LoginFrame;
-import modelo.*;
-
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.List;
+import modelo.*;
+import recompensa.MainFrame;
 
 
 public class App {
@@ -19,6 +16,10 @@ public class App {
     
     usuario.getRacha().actualizarRacha(true, LocalDate.now());
     GestorCosmeticos.desbloquearSegunRacha(usuario);
+
+    javax.swing.SwingUtilities.invokeLater(() -> {
+            new gui.PerfilUsuarioFrame(usuario);
+        });
 
     new MainFrame(usuario);
 
