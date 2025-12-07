@@ -1,10 +1,9 @@
 
 import gui.MostrarRacha;
-import gui.Login.LoginFrame;  //Para abrir la ventana
-import modelo.*;
-import java.time.LocalDate;
-import java.util.List;
+import gui.PerfilUsuarioFrame;
+import java.time.LocalDate;  //Para abrir la ventana
 import java.util.Scanner;
+import modelo.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -12,6 +11,11 @@ public class App {
 
            // Crear un usuario de prueba
     Usuario user = new Usuario("Prueba", "correo@ejemplo.com", "1234", 1);
+
+
+    PerfilUsuarioFrame perfil = new PerfilUsuarioFrame(user);
+        perfil.setVisible(true);
+
 
     // Crear un frame vacío como padre
     java.awt.Frame frame = new java.awt.Frame();
@@ -95,4 +99,16 @@ public class App {
 
         return new Libro(titulo, autor, genero, id, fechaAgregado, paginas);
     }
+    ///////////////////////////////////////////////////////////////////////////
+    //public static void main(String[] args) {
+    
+    // MODO PRUEBAS RÁPIDAS - Descomenta lo que quieras probar
+    
+    //Usuario user = new Usuario("Alex", "alex@test.com", "123", 1L);
+    //user.getRacha().setDiasConsecutivos(35);
+    //new gui.PerfilUsuarioFrame(user);  // Prueba del perfil épico
+    
+    // Cuando termines las pruebas, deja solo esto:
+    // javax.swing.SwingUtilities.invokeLater(() -> new gui.LoginFrame());
 }
+
