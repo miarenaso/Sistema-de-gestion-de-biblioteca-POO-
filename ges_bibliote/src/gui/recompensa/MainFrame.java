@@ -11,9 +11,11 @@ public class MainFrame extends JFrame {
     private JPanel panelCentral;
 
     private Usuario usuario;
+    private final Runnable onChange;
 
-    public MainFrame(Usuario usuario) {
+    public MainFrame(Usuario usuario, Runnable onChange) {
         this.usuario = usuario;
+        this.onChange = onChange;
         setTitle("Gestor de Lectura - " + usuario.getNombre());
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,7 +35,6 @@ public class MainFrame extends JFrame {
         panelCentral.setLayout(new BorderLayout());
         add(panelCentral, BorderLayout.CENTER);
 
-        setVisible(true);
     }
 
     // Método para cambiar el panel central
@@ -46,5 +47,12 @@ public class MainFrame extends JFrame {
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public void mostrarCosmeticos() {
+        cambiarPanel(new CosmeticosPanel(usuario, () -> {
+            bannerPanel.repaint();
+            onChange.run();
+        }));
     }
 }

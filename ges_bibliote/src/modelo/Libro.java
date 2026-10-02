@@ -16,6 +16,7 @@ public class Libro implements Serializable {
     private int paginas;
     private int paginasLeidas;
     private LocalDate fechaAgregado;
+    private String rutaPdf;
 
     //Constructors
     public Libro(String titulo, String autor, String categoria, int id, LocalDate fecha, int paginas) {
@@ -109,6 +110,18 @@ public class Libro implements Serializable {
     
     public int getPaginasLeidas() {
         return paginasLeidas;
+    }
+
+    public String getRutaPdf() {
+        return rutaPdf;
+    }
+
+    public void setRutaPdf(String rutaPdf) {
+        this.rutaPdf = rutaPdf;
+    }
+
+    public boolean esPdf() {
+        return rutaPdf != null && !rutaPdf.isBlank();
     }
 
     public void setPaginasLeidas(int paginasLeidas) {

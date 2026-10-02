@@ -83,7 +83,9 @@ public class BannerPanel extends JPanel {
     if (racha >= 20) indice = 7;
     if (racha >= 30) indice = 8;
 
-    return new ImageIcon(getClass().getResource("/img/logro" + indice + ".png"));
+    String extension = indice == 5 ? ".jpeg" : ".png";
+    java.net.URL recurso = getClass().getResource("/img/logro" + indice + extension);
+    return recurso == null ? new ImageIcon() : new ImageIcon(recurso);
 }
 
 }

@@ -1,20 +1,29 @@
 package gui;
 
 import modelo.*;
+import Login.LoginFrame;
 import java.awt.*;
+import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.*;
-import configuracion.ConfiguracionFrame;
+import Configuracion.ConfiguracionFrame;
+import bibliotecaui.BibliotecaUI;
 import recompensa.MainFrame;
 
 public class PerfilUsuarioFrame extends JFrame {
 
     private final Usuario usuario;
+    private final List<Usuario> usuarios;
     private JPanel panelCentral; // Panel dinámico para mostrar contenido
+    private JToggleButton btnPantallaCompleta;
+    private Rectangle boundsVentana;
+    private GraphicsDevice dispositivoPantalla;
+    private boolean pantallaCompleta;
 
-    public PerfilUsuarioFrame(Usuario usuario) {
+    public PerfilUsuarioFrame(Usuario usuario, List<Usuario> usuarios) {
         this.usuario = usuario;
+        this.usuarios = usuarios;
 
         setTitle("Perfil de Usuario - " + usuario.getNombre());
         setSize(700, 500);
@@ -33,12 +42,14 @@ public class PerfilUsuarioFrame extends JFrame {
         JButton btnBiblioteca = new JButton("Biblioteca");
         JButton btnConfiguracion = new JButton("Configuración");
         JButton btnRacha = new JButton("Racha / Recompensas");
+        btnPantallaCompleta = new JToggleButton("Pantalla completa (F11)");
         JButton btnSalir = new JButton("Cerrar");
 
         btnPerfil.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnBiblioteca.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnConfiguracion.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnRacha.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnPantallaCompleta.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelBotones.add(btnPerfil);
@@ -48,6 +59,8 @@ public class PerfilUsuarioFrame extends JFrame {
         panelBotones.add(btnConfiguracion);
         panelBotones.add(Box.createVerticalStrut(10));
         panelBotones.add(btnRacha);
+        panelBotones.add(Box.createVerticalStrut(10));
+        panelBotones.add(btnPantallaCompleta);
         panelBotones.add(Box.createVerticalStrut(10));
         panelBotones.add(btnSalir);
 
@@ -65,9 +78,56 @@ public class PerfilUsuarioFrame extends JFrame {
         btnBiblioteca.addActionListener(e -> mostrarBiblioteca());
         btnConfiguracion.addActionListener(e -> mostrarConfiguracion());
         btnRacha.addActionListener(e -> mostrarRacha());
+        btnPantallaCompleta.addActionListener(e -> cambiarPantallaCompleta(btnPantallaCompleta.isSelected()));
         btnSalir.addActionListener(e -> dispose());
+        configurarAtajosPantalla();
 
         setVisible(true);
+    }
+
+    private void configurarAtajosPantalla() {
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F11"), "alternarPantallaCompleta");
+        getRootPane().getActionMap().put("alternarPantallaCompleta", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent event) {
+                btnPantallaCompleta.setSelected(!pantallaCompleta);
+                cambiarPantallaCompleta(!pantallaCompleta);
+            }
+        });
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ESCAPE"), "salirPantallaCompleta");
+        getRootPane().getActionMap().put("salirPantallaCompleta", new AbstractAction() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent event) {
+                if (pantallaCompleta) {
+                    btnPantallaCompleta.setSelected(false);
+                    cambiarPantallaCompleta(false);
+                }
+            }
+        });
+    }
+
+    private void cambiarPantallaCompleta(boolean activar) {
+        if (activar == pantallaCompleta) return;
+
+        if (activar) {
+            boundsVentana = getBounds();
+            dispositivoPantalla = GraphicsEnvironment.getLocalGraphicsEnvironment()
+                    .getDefaultScreenDevice();
+            dispose();
+            setUndecorated(true);
+            setVisible(true);
+            dispositivoPantalla.setFullScreenWindow(this);
+            pantallaCompleta = true;
+        } else {
+            dispositivoPantalla.setFullScreenWindow(null);
+            dispose();
+            setUndecorated(false);
+            setBounds(boundsVentana);
+            setVisible(true);
+            pantallaCompleta = false;
+        }
     }
 
     private void mostrarPanelPerfil() {
@@ -116,24 +176,29 @@ public class PerfilUsuarioFrame extends JFrame {
 
     private void mostrarBiblioteca() {
         panelCentral.removeAll();
-        BibliotecaUI bibliotecaUI = new BibliotecaUI();
-        // Quitar setVisible(true) en BibliotecaUI
+        BibliotecaUI bibliotecaUI = new BibliotecaUI(usuario, this::guardarUsuarios, this::registrarLectura);
         panelCentral.add(bibliotecaUI.getContentPane(), BorderLayout.CENTER);
-
-        // Agregar botón de regresar al perfil
-        JButton btnRegresar = new JButton("Regresar");
-        btnRegresar.addActionListener(e -> mostrarPanelPerfil());
-        JPanel botonPanel = new JPanel();
-        botonPanel.add(btnRegresar);
-        bibliotecaUI.getContentPane().add(botonPanel, BorderLayout.SOUTH);
-
         panelCentral.revalidate();
         panelCentral.repaint();
     }
 
+    private void guardarUsuarios() {
+        GestorUsuarios.guardarUsuarios(usuarios, "data.dat");
+    }
+
+    private void registrarLectura() {
+        usuario.getRacha().actualizarRacha(true, LocalDate.now());
+        GestorCosmeticos.desbloquearSegunRacha(usuario);
+        GestorCosmeticos.actualizarTitulo(usuario);
+        guardarUsuarios();
+    }
+
     private void mostrarConfiguracion() {
         panelCentral.removeAll();
-        ConfiguracionFrame configFrame = new ConfiguracionFrame(usuario, GestorUsuarios.cargarUsuarios("data.dat"));
+        ConfiguracionFrame configFrame = new ConfiguracionFrame(usuario, usuarios, () -> {
+            dispose();
+            new LoginFrame();
+        });
         panelCentral.add(configFrame.getContentPane(), BorderLayout.CENTER);
         panelCentral.revalidate();
         panelCentral.repaint();
@@ -141,7 +206,7 @@ public class PerfilUsuarioFrame extends JFrame {
 
     private void mostrarRacha() {
         panelCentral.removeAll();
-        MainFrame rachaFrame = new MainFrame(usuario);
+        MainFrame rachaFrame = new MainFrame(usuario, this::guardarUsuarios);
         panelCentral.add(rachaFrame.getContentPane(), BorderLayout.CENTER);
         panelCentral.revalidate();
         panelCentral.repaint();
