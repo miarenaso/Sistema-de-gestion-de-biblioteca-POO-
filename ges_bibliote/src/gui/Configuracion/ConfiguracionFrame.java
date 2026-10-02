@@ -3,7 +3,6 @@ package Configuracion;
 import modelo.AppTheme;
 import modelo.Usuario;
 import modelo.GestorUsuarios;
-import Login.LoginFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +12,7 @@ public class ConfiguracionFrame extends JFrame {
 
     private final Usuario usuario;
     private final List<Usuario> usuarios;
+    private final Runnable onCerrarSesion;
 
     private JLabel tiempoLabel;
     private JCheckBox chkModoOscuro;
@@ -25,8 +25,13 @@ public class ConfiguracionFrame extends JFrame {
     private Timer timerTiempo;
 
     public ConfiguracionFrame(Usuario usuario, List<Usuario> usuarios) {
+        this(usuario, usuarios, () -> {});
+    }
+
+    public ConfiguracionFrame(Usuario usuario, List<Usuario> usuarios, Runnable onCerrarSesion) {
         this.usuario = usuario;
         this.usuarios = usuarios;
+        this.onCerrarSesion = onCerrarSesion;
 
         setTitle("Ajustes - " + usuario.getNombre());
         setSize(470, 360);
@@ -37,7 +42,6 @@ public class ConfiguracionFrame extends JFrame {
         iniciarTimerTiempo();
         aplicarTema();
 
-        setVisible(true);
     }
 
     private void construirInterfaz() {
@@ -158,8 +162,8 @@ public class ConfiguracionFrame extends JFrame {
     private void cerrarSesion() {
         GestorUsuarios.guardarUsuarios(usuarios, "data.dat");
         if (timerTiempo != null) timerTiempo.stop();
-        new LoginFrame();
         dispose();
+        onCerrarSesion.run();
     }
 
     // -------------------- APLICAR TEMA GLOBAL (PARA TODOS LOS CODIGOS)---------------------

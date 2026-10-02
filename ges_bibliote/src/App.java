@@ -1,34 +1,13 @@
 
-import bibliotecaui.BibliotecaUI;
+import Login.LoginFrame;
 import java.time.LocalDate;
 import java.util.Scanner;
-import modelo.*;
-import recompensa.MainFrame;
+import modelo.Libro;
 
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        final String datos = "data.dat";
-
-           // Crear un usuario de prueba
-    Usuario usuario = new Usuario("Prueba", "correo@ejemplo.com", "1234", 1);
-    usuario.setRacha(new Racha());
-    
-    usuario.getRacha().actualizarRacha(true, LocalDate.now());
-    GestorCosmeticos.desbloquearSegunRacha(usuario);
-
-    javax.swing.SwingUtilities.invokeLater(() -> {
-            new gui.PerfilUsuarioFrame(usuario);
-        });
-
-    new MainFrame(usuario);
-
-
-    new BibliotecaUI();
-
-    
-    // Crear un frame vacío como padre
-    java.awt.Frame frame = new java.awt.Frame();
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(LoginFrame::new);
 
 
         //new LoginFrame();  //Para abrir la ventana 

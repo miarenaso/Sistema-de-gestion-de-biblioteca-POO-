@@ -10,9 +10,7 @@ public class MenuPanel extends JPanel {
         setPreferredSize(new Dimension(160, 0));
 
         JButton btnCosmeticos = new JButton("Cosmeticos");
-        btnCosmeticos.addActionListener(e -> {
-            frame.cambiarPanel(new CosmeticosPanel(frame.getUsuario()));
-        });
+        btnCosmeticos.addActionListener(e -> frame.mostrarCosmeticos());
 
         add(new JLabel(" Menu", SwingConstants.CENTER));
         add(btnCosmeticos);

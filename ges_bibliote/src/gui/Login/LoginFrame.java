@@ -1,6 +1,7 @@
 package Login;
 
 import modelo.*;
+import gui.PerfilUsuarioFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -89,7 +90,8 @@ public class LoginFrame extends JFrame {
         for (Usuario u : usuarios) {
             if (u.getCorreo().equals(correo) && u.getContrasena().equals(pass)) {
                 JOptionPane.showMessageDialog(this, "Bienvenido, " + u.getNombre());
-
+                new PerfilUsuarioFrame(u, usuarios);
+                dispose();
                 return;
             }
         }

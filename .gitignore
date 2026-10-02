@@ -4,6 +4,11 @@
 /data/
 data.dat
 
+# Local build output and imported personal documents
+/target/
+/biblioteca-pdfs/
+/dependency-reduced-pom.xml
+
 # Log file
 *.log
 

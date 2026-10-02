@@ -59,8 +59,9 @@ public class Usuario implements Serializable {
 
     //Ojo, el libro debe tener el estado de lectura "finalizado" para agregarse al historial
     public void agregarLibroHistorial(Libro libro) {
-        if (libro.getEstadoLectura().equals("finalizado") && !historialLibros.contains(libro))
-        historialLibros.add(libro);
+        if ("Finalizado".equalsIgnoreCase(libro.getEstadoLectura()) && !historialLibros.contains(libro)) {
+            historialLibros.add(libro);
+        }
     }
 
     //Esto garantiza q|ue no haya libros repetidos en favoritos
